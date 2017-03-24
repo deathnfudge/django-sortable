@@ -247,6 +247,8 @@ Note how the 'popularity' field is specifying two sort columns, and the second c
 Syntax                      Direction     Sort
 --------------------------- ----------- ----------------------------------------
 column_name or +column_name asc         Will sort column_name ascending.
+                            ----------- ----------------------------------------
+                            desc        Will sort column_name descending.
 =========================== =========== ========================================
 
 
