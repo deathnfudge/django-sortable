@@ -243,42 +243,22 @@ Lets assume you want to sort by a book's popularity, but you want to make sure t
 
 Note how the 'popularity' field is specifying two sort columns, and the second column is prepended with a '++'. We've added some syntax for always sorting in a particular direction no matter what direction is passed to django-sortable. Here's a rundown of how that works:
 
-=======                     =========  ================================
-Syntax                      Direction  Sort
--------                     ---------  --------------------------------
-column_name or +column_name asc        Will sort column_name ascending.
+=========================== =========== ==========================================
+Syntax                      Direction     Sort
+--------------------------- ----------- ------------------------------------------
+column_name or +column_name asc           Will sort column_name ascending.
+                            ----------- ------------------------------------------
+                            desc          Will sort column_name descending.
+--------------------------- ----------- ------------------------------------------
+ -column_name                asc           Will sort column_name descending.
+                            ----------- ------------------------------------------
+                            desc          Will sort column_name ascending.
+--------------------------- ----------- ------------------------------------------
+ ++column_name              asc or desc   Will always sort column_name ascending.
+--------------------------- ----------- ------------------------------------------
+ --column_name              asc or desc   Will always sort column_name descending.
+=========================== =========== ==========================================
 
-=========================== =========  ================================
-
-      <td rowspan="2" style="padding: 10px;"><code>column_name</code> or <code>+column_name</code></td>
-      <td style="border-bottom: 1px #eee solid; padding: 10px;"><code>asc</code></td>
-      <td style="border-bottom: 1px #eee solid; padding: 10px;">Will sort column_name <b>ascending</b>.</td>
-    </tr>
-    <tr style="border-bottom: 1px #eee solid;">
-      <td style="padding: 10px;"><code>desc</code></td>
-      <td style="padding: 10px;">Will sort column_name <b>descending</b>.</td>
-    </tr>
-    <tr>
-      <td rowspan="2" style="padding: 10px;"><code>-column_name</code></td>
-      <td style="border-bottom: 1px #eee solid; padding: 10px;"><code>asc</code></td>
-      <td style="border-bottom: 1px #eee solid; padding: 10px;">Will sort column_name <b>descending</b>.</td>
-    </tr>
-    <tr style="border-bottom: 1px #eee solid;">
-      <td style="padding: 10px;"><code>desc</code></td>
-      <td style="padding: 10px;">Will sort column_name <b>ascending</b>.</td>
-    </tr>
-    <tr style="border-bottom: 1px #eee solid;">
-      <td style="padding: 10px;"><code>++column_name</code></td>
-      <td style="padding: 10px;"><code>asc</code> or <code>desc</code></td>
-      <td style="padding: 10px;">Will <b>always</b> sort column_name <b>ascending</b>.</td>
-    </tr>
-    <tr>
-      <td style="padding: 10px;"><code>--column_name</code></td>
-      <td style="padding: 10px;"><code>asc</code> or <code>desc</code></td>
-      <td style="padding: 10px;">Will <b>always</b> sort column_name <b>descending</b>.</td>
-    </tr>
-  </tbody>
-</table><br>
 
 Note that the `column_name` and `+column_name` are identical. The latter was added for consistency.
 
