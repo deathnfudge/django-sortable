@@ -1,6 +1,6 @@
 from django import template
 from django.conf import settings
-
+from django.template import TemplateSyntaxError
 
 register = template.Library()
 
@@ -19,7 +19,7 @@ def parse_tag_token(token):
   """Parses a tag that's supposed to be in this format: {% sortable_link field title %}  """
   bits = [b.strip('"\'') for b in token.split_contents()]
   if len(bits) < 2:
-    raise TemplateSyntaxError, "anchor tag takes at least 1 argument"
+    raise TemplateSyntaxError("anchor tag takes at least 1 argument")
   try:
     title = bits[2]
   except IndexError:
