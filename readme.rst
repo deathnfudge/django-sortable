@@ -243,7 +243,21 @@ Lets assume you want to sort by a book's popularity, but you want to make sure t
 
 Note how the 'popularity' field is specifying two sort columns, and the second column is prepended with a '++'. We've added some syntax for always sorting in a particular direction no matter what direction is passed to django-sortable. Here's a rundown of how that works:
 
-
+=========================== =========== ========================================
+Syntax                      Direction     Sort
+--------------------------- ----------- ----------------------------------------
+column_name or +column_name asc         Will sort column_name ascending.
+                            ----------- ----------------------------------------
+                            desc        Will sort column_name descending.
+--------------------------- ----------- ----------------------------------------
+column_name                 asc         Will sort column_name descending.
+                            ----------- ----------------------------------------
+                            desc        Will sort column_name ascending.
+--------------------------- ----------- ----------------------------------------
+++column_name               asc or desc Will always sort column_name ascending.
+--------------------------- ----------- ----------------------------------------
+--column_name               asc or desc Will always sort column_name descending.
+=========================== =========== ========================================
 
 
 Note that the `column_name` and `+column_name` are identical. The latter was added for consistency.
