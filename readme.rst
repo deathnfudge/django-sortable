@@ -249,6 +249,14 @@ Syntax                      Direction     Sort
 column_name or +column_name asc         Will sort column_name ascending.
 
                             desc        Will sort column_name descending.
+
+column_name                 asc         Will sort column_name descending.
+
+                            desc        Will sort column_name ascending.
+
+++column_name               asc or desc Will always sort column_name ascending.
+
+--column_name               asc or desc Will always sort column_name descending.
 =========================== =========== ========================================
 
 
