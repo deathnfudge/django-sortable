@@ -1,6 +1,6 @@
 #Django Sortable2
 
-####Forked from [Django Sortable](https://github.com/meizon/django-sortable)
+####Forked from [Django Sortable](https://github.com/drewyeaton/django-sortable)
 
 <table style="border: 1px #eee solid; border-collapse: collapse; border-spacing: 0;">
   <thead>
