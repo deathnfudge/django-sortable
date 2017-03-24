@@ -22,7 +22,7 @@ Like pagination in Django, django-sortable works on a variety of data-types. Whe
 Installation
 ------------
 
-1.  Add django-sortable to the `INSTALLED_APPS` setting in your project's settings.py file:
+1.  Add django-sortable to the ``INSTALLED_APPS`` setting in your project's settings.py file::
 
     INSTALLED_APPS = (
         # …
