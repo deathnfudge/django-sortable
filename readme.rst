@@ -1,4 +1,6 @@
-#Django Sortable2
+================
+Django Sortable2
+================
 
 ####Forked from [Django Sortable](https://github.com/drewyeaton/django-sortable)
 
