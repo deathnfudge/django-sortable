@@ -16,7 +16,7 @@ Lintly .. image:: https://lintly.com/gh/deathnfudge/django-sortable2/badge.svg
 
 The objective of django-sortable is to provide a flexible way to handle sorting within a complex Django application. 
 
-Like pagination in Django, django-sortable works on a variety of data-types. When possible, an `order_by` clause will be added to a QuerySet but django-sortable also handles lists or tuples of dictionaries or objects. Support is also available for building the `ORDER BY` clause of a SQL query.
+Like pagination in Django, django-sortable works on a variety of data-types. When possible, an ``order_by`` clause will be added to a QuerySet but django-sortable also handles lists or tuples of dictionaries or objects. Support is also available for building the ``ORDER BY`` clause of a SQL query.
 
 
 Installation
@@ -216,7 +216,7 @@ Sometimes the column you sort by is complex—especially if it spans relationshi
             fields=('title', 'published', ('author', 'author__fullname'), 'page_count')
         )
 
-Notice that we have a tuple for the fields argument, and one of the items in the tuple is another tuple. In this inner tuple, the first item is the __field name__ and the second is our special __ordering field__. When we sort on _author_, we're actually sorting on _author__fullname_.
+Notice that we have a tuple for the fields argument, and one of the items in the tuple is another tuple. In this inner tuple, the first item is the **field name** and the second is our special **ordering field**. When we sort on *author*, we're actually sorting on *author__fullname*.
 
 Defining ordering fields has the secondary benefit of locking down which fields are sorted on.
 
@@ -224,13 +224,15 @@ Defining ordering fields has the secondary benefit of locking down which fields 
 Specifying a Default Sort Direction
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The default sort direction for all fields is ascending. This is probably fine for textual data, but for numbers it's nice to default to largest first. To specify a default sort direction of descending, place a `-` before the sort column in the sortable header tag. Here's an example:
-  
-    ``{% sortable_header -page_count "Number of Pages" %}``
+The default sort direction for all fields is ascending. This is probably fine for textual data, but for numbers it's nice to default to largest first. To specify a default sort direction of descending, place a ``-`` before the sort column in the sortable header tag. Here's an example:
+::
+
+    {% sortable_header -page_count "Number of Pages" %}
   
 This tag generates a table header (with a default direction of descending) like this:
+::
 
-    ``<th class="sort-none"><a href="/books/?sort=page_count&dir=desc" title="Number of Pages">Number of Pages</a></th>``
+    <th class="sort-none"><a href="/books/?sort=page_count&dir=desc" title="Number of Pages">Number of Pages</a></th>
 
 
 Sorting on Multiple Database Columns
@@ -275,7 +277,8 @@ Note that the ``column_name`` and ``+column_name`` are identical. The latter was
 Setting Custom Classes
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Depending on the direction of the sort, a class will be placed on each header or link. The default classes are `sort-asc`, `sort-desc`, and `sort-none`. However, these are fully customizable using your project's settings. In your settings.py file, set these variables:
+Depending on the direction of the sort, a class will be placed on each header or link. The default classes are ``sort-asc``, ``sort-desc``, and ``sort-none``. However, these are fully customizable using your project's settings. In your settings.py file, set these variables:
+::
 
     SORT_ASC_CLASS = 'sort-asc'
     SORT_DESC_CLASS = 'sort-desc'
@@ -285,19 +288,23 @@ Depending on the direction of the sort, a class will be placed on each header or
 Rendering Links
 ^^^^^^^^^^^^^^^
 
-If you want to specify a title in the header or link, you can place it in the `sortable_header` itself. Do it like this:
-  
+If you want to specify a title in the header or link, you can place it in the ``sortable_header`` itself. Do it like this:
+::
+
     {% sortable_header page_count "Number of Pages" %}
   
 This tag generates a table header like this:
+::
 
     <th class="sort-asc"><a href="/books/?sort=page_count&dir=asc" title="Number of Pages">Number of Pages</a></th>
 
-You may want to do this to obscure your database column names, but most commonly you probably just want to make your URLs nicer. If you don't want to use table headers, you can get plain links with the `sortable_link` tag like this:
+You may want to do this to obscure your database column names, but most commonly you probably just want to make your URLs nicer. If you don't want to use table headers, you can get plain links with the ``sortable_link`` tag like this:
+::
 
     {% sortable_link page_count "Number of Pages" %}
 
 This tag will generate a link with a class on the anchor instead of the table header:
+::
 
     <a class="sort-asc" href="/books/?sort=page_count&dir=asc" title="Number of Pages">Number of Pages</a>
 
@@ -308,6 +315,7 @@ Building Arbitrary Sort Links
 If your template code is really gnarly, you can build your own sorting links using some special template tags. This method isn't recommended as common practice, but you can use it in a pinch.
 
 Say you want to have a column header link with this markup:
+::
 
     <th colspan="2" class="my-header sort-asc">
         <a href="/" title="Book">
@@ -315,7 +323,8 @@ Say you want to have a column header link with this markup:
         </a>
     </th>
 
-Obviously neither `sortable_header` or `sortable_link` tags will work here, but we can build this by hand using  `sortable_class` and `sortable_url` tags.  
+Obviously neither ``sortable_header`` or ``sortable_link`` tags will work here, but we can build this by hand using  ``sortable_class`` and ``sortable_url`` tags.
+::
 
     <th colspan="2" class="my-header {% sortable_class book %}">
         <a href="{% sortable_url book %}" title="Book">
@@ -323,4 +332,4 @@ Obviously neither `sortable_header` or `sortable_link` tags will work here, but 
         </a>
     </th>
 
-There is a slight maintenance burden here because you'll have to remember to change both the `sortable_class` and `sortable_url` tags if you want to update the sort column.
+There is a slight maintenance burden here because you'll have to remember to change both the ``sortable_class`` and ``sortable_url`` tags if you want to update the sort column.
