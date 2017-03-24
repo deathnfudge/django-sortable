@@ -1,6 +1,25 @@
-#Django Sortable
+#Django Sortable2
 
-[![Lintly](https://lintly.com/gh/deathnfudge/django-sortable2/badge.svg)](https://lintly.com/gh/deathnfudge/django-sortable2/)
+####Forked from [Django Sortable](https://github.com/meizon/django-sortable)
+
+<table style="border: 1px #eee solid; border-collapse: collapse; border-spacing: 0;">
+  <thead>
+    <tr style="border-bottom: 1px #eee solid; background-color: #f6f6f6">
+      <th style="padding: 10px;">Check</th>
+      <th style="padding: 10px;">Coverage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="2" style="padding: 10px;">Lintly</td>
+      <td style="border-bottom: 1px #eee solid; padding: 10px;">
+        <a href="https://lintly.com/gh/deathnfudge/django-sortable2/">
+            <img src="https://lintly.com/gh/deathnfudge/django-sortable2/badge.svg" alt="Lintly" />
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table><br>
 
 The objective of django-sortable is to provide a flexible way to handle sorting within a complex Django application. 
 
