@@ -74,13 +74,15 @@ class SortableLinkNode(template.Node):
             css_class = SORT_NONE_CLASS
 
         params = "&%s" % (get_params.urlencode(),) if len(get_params.keys()) > 0 else ''
-        url = ('%s?sort=%s%s' % (context['request'].path, self.field_name, params)).replace('&', '&amp;')
+        url = ('%s?sort=%s%s' % (context['request'].path, self.field_name, params))\
+            .replace('&', '&amp;')
 
         return (url, css_class)
 
     def render(self, context):
         url, css_class = self.build_link(context)
-        return '<a href="%s" class="%s" title="%s">%s</a>' % (url, css_class, self.title, self.title)
+        return '<a href="%s" class="%s" title="%s">%s</a>' % \
+               (url, css_class, self.title, self.title)
 
 
 class SortableTableHeaderNode(SortableLinkNode):
@@ -88,7 +90,8 @@ class SortableTableHeaderNode(SortableLinkNode):
 
     def render(self, context):
         url, css_class = self.build_link(context)
-        return '<th class="%s"><a href="%s" title="%s">%s</a></th>' % (css_class, url, self.title, self.title)
+        return '<th class="%s"><a href="%s" title="%s">%s</a></th>' % \
+               (css_class, url, self.title, self.title)
 
 
 class SortableURLNode(SortableLinkNode):

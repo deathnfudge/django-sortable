@@ -1,7 +1,8 @@
 from operator import itemgetter, attrgetter
 
 
-class SortableInvalidObjectsException(Exception): pass
+class SortableInvalidObjectsException(Exception):
+    pass
 
 
 class Sortable(object):
