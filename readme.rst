@@ -52,16 +52,16 @@ The most basic way to use django-sortable is to pass a QuerySet to the sortable 
 views.py
 --------
 
-    from django_sortable.helpers import sortable_helper
-  
-    def books(request):
-        book_list = Book.objects.all()
-        books = sortable_helper(request, book_list)
-      
-        # pagination code would go here, after sorting
-        # …
-      
-        return render_to_response('books.html', {'books': books})
+        ``from django_sortable.helpers import sortable_helper``
+
+        ``def books(request):``
+            ``book_list = Book.objects.all()``
+            ``books = sortable_helper(request, book_list)``
+
+            ``# pagination code would go here, after sorting``
+            ``# …``
+
+            ``return render_to_response('books.html', {'books': books})``
 
 books.html
 ----------
