@@ -1,5 +1,7 @@
 #Django Sortable
 
+[![Lintly](https://lintly.com/gh/deathnfudge/django-sortable2/badge.svg)](https://lintly.com/gh/deathnfudge/django-sortable2/)
+
 The objective of django-sortable is to provide a flexible way to handle sorting within a complex Django application. 
 
 Like pagination in Django, django-sortable works on a variety of data-types. When possible, an `order_by` clause will be added to a QuerySet but django-sortable also handles lists or tuples of dictionaries or objects. Support is also available for building the `ORDER BY` clause of a SQL query.
