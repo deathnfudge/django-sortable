@@ -66,21 +66,22 @@ views.py
 
 books.html
 ----------
+::
 
-    {% load sortable %}
-  
-    <table>
-        <tr>
-            {% sortable_header title %}
-            {% sortable_header published %}
-        </tr>
-        {% for book in books %}
-        <tr>
-            <td>{{ book.title }}</td>
-            <td>{{ book.published }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+        {% load sortable %}
+
+        <table>
+            <tr>
+                {% sortable_header title %}
+                {% sortable_header published %}
+            </tr>
+            {% for book in books %}
+            <tr>
+                <td>{{ book.title }}</td>
+                <td>{{ book.published }}</td>
+            </tr>
+            {% endfor %}
+        </table>
 
 
 Advanced Usage
@@ -90,45 +91,47 @@ If you need more control over the behavior of django-sortable, you can use the S
 
 views.py
 --------
+::
 
-    from django_sortable.sortable import Sortable
-  
-    def authors(request):
-    
-        # we can pass in a list (or tuple) of dictionaries too!
-        author_list = Author.objects.values()
-    
-        # the 'author' field actually sorts on last_name then first_name
-        sortable = Sortable(author_list, (
-            ('author', ('last_name', 'first_name')), 
-            'birth_date'
-        ))
-        field_name = request.GET.get('sort', '')
-        direction = request.GET.get('dir', 'asc')
-        authors = sortable.sorted(field_name, direction)
-    
-        # pagination code would go here, after sorting
-        # …
-    
-        return render_to_response('authors.html', {'authors': authors})
+        from django_sortable.sortable import Sortable
+
+        def authors(request):
+
+            # we can pass in a list (or tuple) of dictionaries too!
+            author_list = Author.objects.values()
+
+            # the 'author' field actually sorts on last_name then first_name
+            sortable = Sortable(author_list, (
+                ('author', ('last_name', 'first_name')),
+                'birth_date'
+            ))
+            field_name = request.GET.get('sort', '')
+            direction = request.GET.get('dir', 'asc')
+            authors = sortable.sorted(field_name, direction)
+
+            # pagination code would go here, after sorting
+            # …
+
+            return render_to_response('authors.html', {'authors': authors})
 
 authors.html
 ------------
+::
 
-    {% load sortable %}
-  
-    <table>
-        <tr>
-            <th>{% sortable_link author %}</th>
-            <th>{% sortable_link birth_date "Birthday" %}</th>
-        </tr>
-        {% for author in authors %}
-        <tr>
-            <td>{{ author.full_name }}</td>
-            <td>{{ author.birth_date }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+        {% load sortable %}
+
+        <table>
+            <tr>
+                <th>{% sortable_link author %}</th>
+                <th>{% sortable_link birth_date "Birthday" %}</th>
+            </tr>
+            {% for author in authors %}
+            <tr>
+                <td>{{ author.full_name }}</td>
+                <td>{{ author.birth_date }}</td>
+            </tr>
+            {% endfor %}
+        </table>
 
 
 Raw SQL Usage
@@ -138,62 +141,64 @@ You can use django-sortable with raw SQL queries by asking it for ordering colum
 
 views.py
 --------
+::
 
-    from django_sortable.sortable import Sortable
-  
-    def books(request):
-    
-        # all we need is an ordering column, don't pass an object list
-        sortable = Sortable(None, (('book', 'b.title'),))
-        field_name = request.GET.get('sort', '')
-        direction = request.GET.get('dir', 'asc')
-    
-        # also, you can pass in a default ordering column(s)
-        order_col = sortable.sql_predicate(
-            field_name=field_name, 
-            direction=direction, 
-            default=('m.title', 'p.title', '-t.condition')
-        )
-  
-        sql = '''
-            SELECT      
-                b.id AS id,
-                b.title AS title,
-                b.page_count AS num_pages,
-                a.full_name AS author,
-            FROM 
-                book as b, 
-                author as a
-            WHERE 
-                b.page_count > 100 AND
-                b.status = %s AND
-                b.author_id = a.id
-            ORDER BY ''' + order_col
-      
-        cursor = connection.cursor()
-        cursor.execute(sql, ['available',])
-        books = dictfetchall(cursor)
-    
-        return render_to_response('books.html', {'books': books})
+        from django_sortable.sortable import Sortable
+
+        def books(request):
+
+            # all we need is an ordering column, don't pass an object list
+            sortable = Sortable(None, (('book', 'b.title'),))
+            field_name = request.GET.get('sort', '')
+            direction = request.GET.get('dir', 'asc')
+
+            # also, you can pass in a default ordering column(s)
+            order_col = sortable.sql_predicate(
+                field_name=field_name,
+                direction=direction,
+                default=('m.title', 'p.title', '-t.condition')
+            )
+
+            sql = '''
+                SELECT
+                    b.id AS id,
+                    b.title AS title,
+                    b.page_count AS num_pages,
+                    a.full_name AS author,
+                FROM
+                    book as b,
+                    author as a
+                WHERE
+                    b.page_count > 100 AND
+                    b.status = %s AND
+                    b.author_id = a.id
+                ORDER BY ''' + order_col
+
+            cursor = connection.cursor()
+            cursor.execute(sql, ['available',])
+            books = dictfetchall(cursor)
+
+            return render_to_response('books.html', {'books': books})
 
 
 books.html
 ----------
+::
 
-    {% load sortable %}
-  
-    <table>
-        <tr>
-            <th>{% sortable_link book "Book" %}</th>
-            <th>Author</th>
-        </tr>
-        {% for book in books %}
-        <tr>
-            <td>{{ book.title }}</td>
-            <td>{{ book.author }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+        {% load sortable %}
+
+        <table>
+            <tr>
+                <th>{% sortable_link book "Book" %}</th>
+                <th>Author</th>
+            </tr>
+            {% for book in books %}
+            <tr>
+                <td>{{ book.title }}</td>
+                <td>{{ book.author }}</td>
+            </tr>
+            {% endfor %}
+        </table>
 
 
 Additional Options
@@ -203,12 +208,13 @@ Defining Ordering Fields
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 Sometimes the column you sort by is complex—especially if it spans relationships. You can specify sortable fields with custom order fields very easily. Imagine that we want to sort by author in our basic books example. We need to specify ordering fields for all the fields we want to order by, and add an additional string for a special ordering field:
+::
 
-    books = sortable_helper(
-        request=request, 
-        objects=book_list, 
-        fields=('title', 'published', ('author', 'author__fullname'), 'page_count')
-    )
+        books = sortable_helper(
+            request=request,
+            objects=book_list,
+            fields=('title', 'published', ('author', 'author__fullname'), 'page_count')
+        )
 
 Notice that we have a tuple for the fields argument, and one of the items in the tuple is another tuple. In this inner tuple, the first item is the __field name__ and the second is our special __ordering field__. When we sort on _author_, we're actually sorting on _author__fullname_.
 
@@ -220,11 +226,11 @@ Specifying a Default Sort Direction
 
 The default sort direction for all fields is ascending. This is probably fine for textual data, but for numbers it's nice to default to largest first. To specify a default sort direction of descending, place a `-` before the sort column in the sortable header tag. Here's an example:
   
-    {% sortable_header -page_count "Number of Pages" %}
+    ``{% sortable_header -page_count "Number of Pages" %}``
   
 This tag generates a table header (with a default direction of descending) like this:
 
-    <th class="sort-none"><a href="/books/?sort=page_count&dir=desc" title="Number of Pages">Number of Pages</a></th>
+    ``<th class="sort-none"><a href="/books/?sort=page_count&dir=desc" title="Number of Pages">Number of Pages</a></th>``
 
 
 Sorting on Multiple Database Columns
@@ -233,15 +239,16 @@ Sorting on Multiple Database Columns
 If you need more control with exactly how sorting happens, you can specify more than one column to sort by. This works with either Query Sets, lists/tuples of dictionaries or lists/tuples of objects.
 
 Lets assume you want to sort by a book's popularity, but you want to make sure that if two or more books have the same popularity, they are then _always_ sorted by title alphabetically ascending (regardless of the popularity sort direction).
+::
 
-    books = sortable_helper(
-        request=request, 
-        objects=book_list, 
-        fields=(
-            'title', 
-            ('popularity', ('popularity', '++title'))
+        books = sortable_helper(
+            request=request,
+            objects=book_list,
+            fields=(
+                'title',
+                ('popularity', ('popularity', '++title'))
+            )
         )
-    )
 
 Note how the 'popularity' field is specifying two sort columns, and the second column is prepended with a '++'. We've added some syntax for always sorting in a particular direction no matter what direction is passed to django-sortable. Here's a rundown of how that works:
 
@@ -262,7 +269,7 @@ column_name                 asc           Will sort column_name **descending**.
 =========================== ============= ============================================
 
 
-Note that the `column_name` and `+column_name` are identical. The latter was added for consistency.
+Note that the ``column_name`` and ``+column_name`` are identical. The latter was added for consistency.
 
 
 Setting Custom Classes
