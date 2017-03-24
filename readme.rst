@@ -192,7 +192,8 @@ __books.html__
 Additional Options
 ------------------
 
-####Defining Ordering Fields
+Defining Ordering Fields
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 Sometimes the column you sort by is complex—especially if it spans relationships. You can specify sortable fields with custom order fields very easily. Imagine that we want to sort by author in our basic books example. We need to specify ordering fields for all the fields we want to order by, and add an additional string for a special ordering field:
 
@@ -207,7 +208,8 @@ Notice that we have a tuple for the fields argument, and one of the items in the
 Defining ordering fields has the secondary benefit of locking down which fields are sorted on.
 
 
-####Specifying a Default Sort Direction
+Specifying a Default Sort Direction
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The default sort direction for all fields is ascending. This is probably fine for textual data, but for numbers it's nice to default to largest first. To specify a default sort direction of descending, place a `-` before the sort column in the sortable header tag. Here's an example:
   
@@ -218,7 +220,8 @@ This tag generates a table header (with a default direction of descending) like 
     <th class="sort-none"><a href="/books/?sort=page_count&dir=desc" title="Number of Pages">Number of Pages</a></th>
 
 
-####Sorting on Multiple Database Columns
+Sorting on Multiple Database Columns
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If you need more control with exactly how sorting happens, you can specify more than one column to sort by. This works with either Query Sets, lists/tuples of dictionaries or lists/tuples of objects.
 
@@ -278,7 +281,8 @@ Note how the 'popularity' field is specifying two sort columns, and the second c
 Note that the `column_name` and `+column_name` are identical. The latter was added for consistency.
 
 
-####Setting Custom Classes
+Setting Custom Classes
+^^^^^^^^^^^^^^^^^^^^^^
 
 Depending on the direction of the sort, a class will be placed on each header or link. The default classes are `sort-asc`, `sort-desc`, and `sort-none`. However, these are fully customizable using your project's settings. In your settings.py file, set these variables:
 
@@ -287,7 +291,8 @@ Depending on the direction of the sort, a class will be placed on each header or
     SORT_NONE_CLASS = 'sort-none'
 
 
-####Rendering Links
+Rendering Links
+^^^^^^^^^^^^^^^
 
 If you want to specify a title in the header or link, you can place it in the `sortable_header` itself. Do it like this:
   
@@ -306,7 +311,8 @@ This tag will generate a link with a class on the anchor instead of the table he
     <a class="sort-asc" href="/books/?sort=page_count&dir=asc" title="Number of Pages">Number of Pages</a>
 
 
-####Building Arbitrary Sort Links
+Building Arbitrary Sort Links
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If your template code is really gnarly, you can build your own sorting links using some special template tags. This method isn't recommended as common practice, but you can use it in a pinch.
 
