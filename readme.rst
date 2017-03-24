@@ -24,10 +24,10 @@ Installation
 
 1.  Add django-sortable to the `INSTALLED_APPS` setting in your project's settings.py file:
 
-        INSTALLED_APPS = (
-            # …
-            'django_sortable',
-        )
+    INSTALLED_APPS = (
+        # …
+        'django_sortable',
+    )
 
 2.  Add the request context processor to the `TEMPLATE_CONTEXT_PROCESSORS` setting. If you don't have these defined in your settings.py file, you'll have to specify the default ones, and add the request processor at the end. (The current defaults are listed in the Django [context processor documentation](https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-TEMPLATE_CONTEXT_PROCESSORS).) This setting will look something like this:
 
