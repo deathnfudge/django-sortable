@@ -19,13 +19,13 @@ CLASSIFIERS = [
 
 KEYWORDS = 'sorting sortable queryset sql pagination django'
 
-setup(name='django-sortable',
-      version='0.3.1',
+setup(name='django-sortable2',
+      version='0.3.5',
       description='Flexible sorting for Django applications',
       long_description=LONG_DESCRIPTION,
-      author='Drew Yeaton',
+      author='Drew Yeaton, Jason Otero',
       author_email='xeeton@gmail.com',
-      url='http://github.com/drewyeaton/django-sortable',
+      url='https://github.com/deathnfudge/django-sortable2',
       packages=find_packages(),
       platforms=['Platform Independent'],
       license='GPLv3',

@@ -62,7 +62,7 @@ class SortableLinkNode(template.Node):
         # if is current field, and sort isn't defined, assume asc otherwise desc
         direction = direction or ((self.field_name == field_name) and 'asc' or 'desc')
 
-        # if current field and it's sorted, make link inverse, otherwise defalut to asc
+        # if current field and it's sorted, make link inverse, otherwise default to asc
         if self.field_name == field_name:
             get_params['dir'] = directions[direction]['inverse']
         else:

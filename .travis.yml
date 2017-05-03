@@ -11,6 +11,6 @@ install:
   - pip install -e .
   - pip install coverage
 
-script: nosetests -w tests/unit --with-coverage --cover-package=quickbooks
+script: nosetests -w tests/unit --with-coverage --cover-package=sortable2
 after_success:
   - coveralls
