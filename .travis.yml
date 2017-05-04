@@ -5,11 +5,12 @@ python:
   - 3.3
   - 3.4
   - 3.5
+before_install:
+  - pip install coveralls
 install:
   - pip install -e .
   - pip install coverage
-  - pip install coveralls
 
-script: coverage run --source=django_sortable setup.py test
+script: nosetests -w django_sortable/tests --with-coverage --cover-package=django_sortable
 after_success:
   - coveralls
