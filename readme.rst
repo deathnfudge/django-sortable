@@ -5,13 +5,17 @@ Django Sortable2
 Forked from Django Sortable https://github.com/drewyeaton/django-sortable
 -------------------------------------------------------------------------
 
-====== =======================================================================
-Check  Coverage
------- -----------------------------------------------------------------------
-Lintly .. image:: https://lintly.com/gh/deathnfudge/django-sortable2/badge.svg
-            :target: https://lintly.com/gh/deathnfudge/django-sortable2/
-            :alt: Lintly
-====== =======================================================================
+========= ===============================================================================
+Check     Coverage
+--------- -------------------------------------------------------------------------------
+Lintly    .. image:: https://lintly.com/gh/deathnfudge/django-sortable2/badge.svg
+               :target: https://lintly.com/gh/deathnfudge/django-sortable2/
+               :alt: Lintly
+--------- -------------------------------------------------------------------------------
+Travis CI .. image:: https://travis-ci.org/deathnfudge/django-sortable2.svg?branch=master
+               :target: https://travis-ci.org/deathnfudge/django-sortable2
+               :alt: Travis CI
+========= ===============================================================================
 
 
 The objective of django-sortable is to provide a flexible way to handle sorting within a complex Django application. 
