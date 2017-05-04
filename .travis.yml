@@ -7,6 +7,7 @@ python:
   - 3.5
 before_install:
   - pip install coveralls
+  - pip install -r requiremsnts.txt
 install:
   - pip install -e .
   - pip install coverage
