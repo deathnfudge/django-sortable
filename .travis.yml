@@ -11,6 +11,6 @@ install:
   - pip install -e .
   - pip install coverage
 
-script: nosetests -w tests/unit --with-coverage --cover-package=sortable2
+script: python -m unittest django_sortable.tests
 after_success:
   - coveralls
