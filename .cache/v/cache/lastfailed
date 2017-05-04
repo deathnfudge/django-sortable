@@ -1,0 +1,3 @@
+{
+  "django_sortable/tests/test_templatetags.py::TemplateTagTests::test_single_argument_raises_index_error": true
+}
