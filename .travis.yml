@@ -4,8 +4,8 @@ python:
   - 3.4
   - 3.5
 before_install:
-  - pip install coveralls
   - pip install -r requirements.txt
+  - pip install coveralls
 install:
   - pip install -e .
   - pip install coverage
