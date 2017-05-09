@@ -3,13 +3,13 @@ import unittest
 
 from django.template import TemplateSyntaxError
 from django.template.base import Token
-# from django.test import RequestFactory
-# from django.test import SimpleTestCase
+from django.test import RequestFactory
+from django.test import SimpleTestCase
 
 os.environ["DJANGO_SETTINGS_MODULE"] = "django_sortable.test_settings"
 
 from django_sortable.templatetags.sortable import parse_tag_token, sortable_link, \
-    sortable_header, sortable_url, sortable_class
+    sortable_header, sortable_url, sortable_class, SortableTableHeaderNode
 
 
 class TemplateTagTests(unittest.TestCase):
@@ -95,14 +95,14 @@ class TemplateTagTests(unittest.TestCase):
         self.assertEqual(result.title, 'Test_field')
 
 
-# class TemplateTagWithRequestTests(SimpleTestCase):
-#
-#     def setUp(self):
-#         self.requestFactory = RequestFactory()
-#
-#     def test_sortable_table_header_node_render(self):
-#         node = SortableTableHeaderNode('test_field', 'test_title')
-#         result = node.render({'request': self.requestFactory.get('/test_path')})
-#
-#         self.assertEqual(result, '<th class="desc"><a href="/test_path?sort=test_
-# field&amp;dir=asc" title="test_title">test_title</a></th>')
+class TemplateTagWithRequestTests(SimpleTestCase):
+
+    def setUp(self):
+        self.requestFactory = RequestFactory()
+
+    def test_sortable_table_header_node_render(self):
+        node = SortableTableHeaderNode('test_field', 'test_title')
+        result = node.render({'request': self.requestFactory.get('/test_path')})
+
+        self.assertEqual(result, ('<th class="desc"><a href="/test_path?sort=test_field&amp;dir=asc" '
+                                  'title="test_title">test_title</a></th>'))
