@@ -3,13 +3,13 @@ python:
   - 2.7
   - 3.4
   - 3.5
-before_install:
-  - pip install coveralls
+#before_install:
+#  - pip install coveralls
 install:
   - pip install -r requirements.txt
   - pip install -e .
-  - pip install coverage
+#  - pip install coverage
 
-script: nosetests -w django_sortable/tests --with-coverage --cover-package=django_sortable
-after_success:
-  - coveralls
+script: nosetests -w django_sortable/tests # --with-coverage --cover-package=django_sortable
+#after_success:
+#  - coveralls
